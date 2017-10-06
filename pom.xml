@@ -73,7 +73,19 @@
         </dependency>
         <dependency>
             <groupId>org.ballerinalang</groupId>
-            <artifactId>ballerina-native</artifactId>
+            <artifactId>ballerina-lang</artifactId>
+            <version>${ballerina.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ballerinalang</groupId>
+            <artifactId>ballerina-http</artifactId>
+            <version>${ballerina.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ballerinalang</groupId>
+            <artifactId>ballerina-builtin</artifactId>
             <version>${ballerina.version}</version>
         </dependency>
         <dependency>
@@ -265,24 +277,24 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Generate api doc -->
-            <plugin>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>docerina-maven-plugin</artifactId>
-                <version>${docerina.maven.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>docerina</goal>
-                        </goals>
-                        <configuration>
-                            <outputDir>${project.build.directory}/docs</outputDir>
-                            <sourceDir>${connectors.source.temp.dir}</sourceDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+             <!--Generate api doc-->
+            <!--<plugin>-->
+                <!--<groupId>org.ballerinalang</groupId>-->
+                <!--<artifactId>docerina-maven-plugin</artifactId>-->
+                <!--<version>${docerina.maven.plugin.version}</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>docerina</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<outputDir>${project.build.directory}/docs</outputDir>-->
+                            <!--<sourceDir>${connectors.source.temp.dir}</sourceDir>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <!-- For ballerina natives processing/validation -->
             <plugin>
                 <groupId>org.bsc.maven</groupId>
@@ -291,7 +303,7 @@
                 <configuration>
                     <processors>
                         <processor>
-                            org.ballerinalang.natives.annotation.processor.BallerinaAnnotationProcessor
+                            org.ballerinalang.codegen.BallerinaAnnotationProcessor
                         </processor>
                     </processors>
                     <options>
@@ -373,4 +385,19 @@
         <connectors.samples.dir>${basedir}/target/extra-samples</connectors.samples.dir>
         <docerina.maven.plugin.version>${project.version}</docerina.maven.plugin.version>
     </properties>
+
+
+    <!--<properties>-->
+        <!--&lt;!&ndash; Path to the ballerina source directory &ndash;&gt;-->
+        <!--<ballerina.source.directory>${project.build.directory}/../src/main/ballerina</ballerina.source.directory>-->
+        <!--<package.repository.provider.class>org.ballerinalang.http.repository.BallerinaBuiltinPackageRepository-->
+        <!--</package.repository.provider.class>-->
+        <!--<native.constructs.provider.package>org.ballerinalang.http</native.constructs.provider.package>-->
+        <!--<native.constructs.provider.class>BallerinaHttpConstructsProvider</native.constructs.provider.class>-->
+
+        <!--&lt;!&ndash; Path to the generated natives ballerina files temp directory &ndash;&gt;-->
+        <!--&lt;!&ndash;<generated.ballerina.source.directory>${project.build.directory}/natives</generated.ballerina.source.directory>&ndash;&gt;-->
+        <!--<generated.ballerina.source.directory>${project.build.directory}/../src/main/ballerina</generated.ballerina.source.directory>-->
+        <!--<mavan.findbugsplugin.exclude.file>findbugs-exclude.xml</mavan.findbugsplugin.exclude.file>-->
+    <!--</properties>-->
 </project>
